@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Panel from './Panel';
+import MainScreen from './MainScreen';
 
 function mapStateToProps(state) {
   return {};
@@ -10,9 +10,9 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-const ConnectedPanel = connect(
+const ConnectedMainScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Panel);
+)(MainScreen);
 
-export default ConnectedPanel;
+export default ConnectedMainScreen;

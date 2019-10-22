@@ -3,13 +3,15 @@ import React from 'react';
 import './App.css';
 import MainScreen from './subapp/components/MainScreen';
 import Panel from './Panel/Panel';
+import ConnectedPanel from './Panel/ConnectedPanel';
+import ConnectedMainScreen from './subapp/components/ConnectedMainScreen';
 
 function App() {
   return (
     <div className="App">
-      <Panel />
+      <ConnectedPanel />
       <br />
-      <MainScreen status={0} />
+      <ConnectedMainScreen />
     </div>
   );
 }
