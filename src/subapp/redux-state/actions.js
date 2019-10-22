@@ -1,12 +1,25 @@
 import ActionType from './action-type.enum';
 
 export function connect() {
-  return {
-    type: ActionType.CONNECT,
+  return dispatch => {
+    dispatch(handleConnecting());
   }
 }
 export function disconnect() {
-  return {
-    type: ActionType.DISCONNECT,
+  return dispatch => {
+    dispatch(handleDisconnecting());
   }
 }
+
+function handleConnecting() {
+  return {
+    type: ActionType.HANDLE_CONNECTING,
+  }
+}
+function handleConnected() {}
+function handleDisconnecting() {
+  return {
+    type: ActionType.HANDLE_DISCONNECTING,
+  }
+}
+function handleDisconnected() {}

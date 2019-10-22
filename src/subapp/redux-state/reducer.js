@@ -7,14 +7,14 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ActionType.CONNECT: {
+    case ActionType.HANDLE_CONNECTING: {
       return Object.assign({}, state, {
-        status: ConnectionStatus.CONNECTED,
+        status: ConnectionStatus.CONNECTING,
       });
     }
-    case ActionType.DISCONNECT: {
+    case ActionType.HANDLE_DISCONNECTING: {
       return Object.assign({}, state, {
-        status: ConnectionStatus.DISCONNECTED,
+        status: ConnectionStatus.DISCONNECTING,
       });
     }
     default: return state;
