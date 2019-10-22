@@ -31,3 +31,8 @@ export default function BaseBackend(url) {
     });
   }
 }
+
+// inherit EventTarget
+BaseBackend.prototype = Object.create(EventTarget.prototype);
+// correct the constructor pointer because it points to EventTarget
+BaseBackend.prototype.constructor = BaseBackend;
