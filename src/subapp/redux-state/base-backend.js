@@ -12,6 +12,7 @@ export default function BaseBackend(url) {
         socket.addEventListener('open', () => {
           resolve();
         });
+        this.socket = socket;
       }
     });
   }

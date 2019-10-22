@@ -2,11 +2,14 @@ import ActionType from './action-type.enum';
 
 export function connect() {
   return (dispatch, getState, { backend }) => {
-    console.log(backend);
     dispatch(handleConnecting());
-    setTimeout(() => {
-      dispatch(handleConnected());
-    }, 1000);
+    backend.connect()
+      .then(() => {
+        const socket = backend.socket;
+        socket.addEventListener('message', e => console.log(e.data));
+        socket.send('hello world');
+        dispatch(handleConnected());
+      });
   }
 }
 export function disconnect() {
