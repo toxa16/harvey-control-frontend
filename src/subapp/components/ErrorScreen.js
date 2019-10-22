@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Disconnected() {
+export default function ErrorScreen() {
   return (
     <div>
-      Disconnected.
+      ErrorScreen.
     </div>
   );
 }

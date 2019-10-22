@@ -1,10 +1,11 @@
 import React from 'react';
-import Disconnected from './Disconnected';
+
+import DisconnectedScreen from './DisconnectedScreen';
 
 export default function MainScreen({ status }) {
   function renderByStatus() {
     switch (status) {
-      default: return <Disconnected />
+      default: return <DisconnectedScreen />
     }
   }
 
