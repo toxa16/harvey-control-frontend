@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import MainScreen from './MainScreen';
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    status: state.controlBackend.status,
+  };
 }
 
 function mapDispatchToProps(dispatch) {

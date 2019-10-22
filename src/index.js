@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import subAppReducer from './subapp/redux-state/reducer';
 
-const store = createStore(subAppReducer);
+const store = createStore(
+  combineReducers({
+    controlBackend: subAppReducer,
+  })
+);
 
 const root = document.getElementById('root');
 ReactDOM.render(
