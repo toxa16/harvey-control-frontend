@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import MainScreen from './subapp/components/MainScreen';
-import Panel from './Panel';
+import Panel from './Panel/Panel';
 
 function App() {
   return (
