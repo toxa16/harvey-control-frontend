@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <Panel />
+      <br />
       <MainScreen status={0} />
     </div>
   );
