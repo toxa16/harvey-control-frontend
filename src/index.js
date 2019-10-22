@@ -8,12 +8,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import subAppReducer from './subapp/redux-state/reducer';
+import BaseBackend from './subapp/redux-state/base-backend';
+
+const url = 'DUMMY_URL';  // env
+const backend = new BaseBackend(url);
 
 const store = createStore(
   combineReducers({
     controlBackend: subAppReducer,
   }),
-  applyMiddleware(thunkMiddleware),
+  applyMiddleware(thunkMiddleware.withExtraArgument({ backend })),
 );
 
 const root = document.getElementById('root');

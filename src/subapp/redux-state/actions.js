@@ -1,7 +1,8 @@
 import ActionType from './action-type.enum';
 
 export function connect() {
-  return dispatch => {
+  return (dispatch, getState, { backend }) => {
+    console.log(backend);
     dispatch(handleConnecting());
     setTimeout(() => {
       dispatch(handleConnected());
