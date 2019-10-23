@@ -1,59 +1,45 @@
-import { all, call, put, take } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
+import { all, call, fork, put, take } from 'redux-saga/effects';
+import { eventChannel, END } from 'redux-saga';
 import ActionType from './action-type.enum';
 
-function websocketInitChannel() {
+function websocketChannel2(socket) {
   return eventChannel(emit => {
-    const ws = new WebSocket('ws://localhost:3001');
+    const handleOpen = () => {
+      console.log('websocket opened');
+      emit('emit: ws opened');
+    };
+    const handleClose = () => {
+      console.log('websocket closed');
+      emit('emit: ws closed');
+      emit(END);
+    };
 
-    ws.addEventListener('open', () => {
-      console.log('ws opened');
-      const action = { type: ActionType.HANDLE_CONNECTED }
-      emit(action);
-    });
-
-    ws.addEventListener('message', e => {
-      const message = e.data;
-      console.log(message);
-      const action = {
-        type: ActionType.HANDLE_MESSAGE,
-        payload: { message },
-      }
-      emit(action);
-    })
-
-    ws.addEventListener('close', () => {
-      console.log('ws closed');
-      const action = { type: ActionType.HANDLE_DISCONNECTED }
-      emit(action);
-    });
+    socket.addEventListener('open', handleOpen);
+    socket.addEventListener('close', handleClose);
 
     return () => {
-      const action = { type: ActionType.HANDLE_DISCONNECTING }
-      emit(action);
-      ws.close();
-    }
+      console.log('closing channel...');
+      socket.removeEventListener('open', handleOpen);
+      socket.removeEventListener('close', handleClose);
+    };
   });
 }
 
-function* logWebsocket(channel) {
+function* logWebsocket2(channel) {
   while (true) {
-    let action = yield take(channel);
-    yield put(action);
+    let message = yield take(channel);
+    console.log(message);
   }
 }
-function* closeWebsocket(channel) {
-  yield take(ActionType.DISCONNECT);
-  channel.close();
-}
+
 function* watchWebsocket() {
   while (true) {
     yield take(ActionType.CONNECT);
-    const channel = yield call(websocketInitChannel);
-    yield all([
-      logWebsocket(channel),
-      closeWebsocket(channel),
-    ]);
+    const socket = new WebSocket('ws://localhost:3001');  // env
+    const channel = yield call(websocketChannel2, socket);
+    yield fork(logWebsocket2, channel);
+    yield take(ActionType.DISCONNECT);
+    socket.close();
   }
 }
 
