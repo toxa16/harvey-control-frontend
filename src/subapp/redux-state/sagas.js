@@ -1,10 +1,6 @@
-import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects';
+import { all, call, put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import ActionType from './action-type.enum';
-
-/*function delay(ms) {
-  return new Promise(res => setTimeout(res, ms));
-}*/
 
 function websocketInitChannel() {
   return eventChannel(emit => {
@@ -33,6 +29,8 @@ function websocketInitChannel() {
     });
 
     return () => {
+      const action = { type: ActionType.HANDLE_DISCONNECTING }
+      emit(action);
       ws.close();
     }
   });
@@ -41,7 +39,6 @@ function websocketInitChannel() {
 function* logWebsocket(channel) {
   while (true) {
     let action = yield take(channel);
-    //console.log(message);
     yield put(action);
   }
 }
@@ -60,29 +57,8 @@ function* watchWebsocket() {
   }
 }
 
-function* connect() {
-  /*yield put({ type: ActionType.HANDLE_CONNECTING });
-  yield delay(1000);
-  yield put({ type: ActionType.HANDLE_CONNECTED });*/
-  const channel = yield call(websocketInitChannel);
-}
-function* watchConnect() {
-  yield takeLatest(ActionType.CONNECT, connect);
-}
-
-function* disconnect() {
-  /*yield put({ type: ActionType.HANDLE_DISCONNECTING });
-  yield delay(1000);
-  yield put({ type: ActionType.HANDLE_DISCONNECTED });*/
-}
-function* watchDisconnect() {
-  yield takeLatest(ActionType.DISCONNECT, disconnect);
-}
-
 export default function* rootSaga() {
   yield all([
-    //watchConnect(),
-    //watchDisconnect(),
     watchWebsocket(),
   ]);
 }
