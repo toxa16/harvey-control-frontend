@@ -12,10 +12,18 @@ function websocketInitChannel() {
 
     ws.addEventListener('open', () => {
       console.log('ws opened');
+      emit('emit: ws opened');
     });
+
+    ws.addEventListener('message', e => {
+      const message = e.data;
+      console.log(message);
+      emit(`emit: ${message}`);
+    })
 
     ws.addEventListener('close', () => {
       console.log('ws closed');
+      emit('emit: ws closed');
     });
 
     return () => {
@@ -24,12 +32,24 @@ function websocketInitChannel() {
   });
 }
 
+function* logWebsocket(channel) {
+  while (true) {
+    let message = yield take(channel);
+    console.log(message);
+  }
+}
+function* closeWebsocket(channel) {
+  yield take(ActionType.DISCONNECT);
+  channel.close();
+}
 function* watchWebsocket() {
   while (true) {
     yield take(ActionType.CONNECT);
     const channel = yield call(websocketInitChannel);
-    yield take(ActionType.DISCONNECT);
-    channel.close();
+    yield all([
+      logWebsocket(channel),
+      closeWebsocket(channel),
+    ]);
   }
 }
 
