@@ -1,5 +1,6 @@
 import { all, call, delay, fork, put, take } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
+
 import ActionType from './action-type.enum';
 
 function websocketChannel2(socket) {
@@ -15,13 +16,23 @@ function websocketChannel2(socket) {
       emit(action);
       emit(END);
     };
+    const handleMessage = e => {
+      const message = e.data;
+      const action = {
+        type: ActionType.HANDLE_MESSAGE,
+        payload: { message },
+      };
+      emit(action);
+    }
 
     socket.addEventListener('open', handleOpen);
+    socket.addEventListener('message', handleMessage);
     socket.addEventListener('close', handleClose);
 
     return () => {
       console.log('closing channel...');
       socket.removeEventListener('open', handleOpen);
+      socket.removeEventListener('message', handleMessage);
       socket.removeEventListener('close', handleClose);
     };
   });
