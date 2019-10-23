@@ -8,7 +8,7 @@ function BaseBackend(url) {
       if (socket) {
         reject(new Error('ALREADY CONNECTED.'))
       } else {
-        socket = new WebSocket(url);
+        socket = new WebSocketMock(url);
         socket.addEventListener('open', () => {
           resolve();
         });
