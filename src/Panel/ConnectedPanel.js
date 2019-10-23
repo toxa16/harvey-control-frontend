@@ -10,10 +10,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onConnect: () => dispatch({
-      type: ActionType.HANDLE_CONNECTING,
+      type: ActionType.CONNECT,
     }),
     onDisconnect: () => dispatch({
-      type: ActionType.HANDLE_DISCONNECTING,
+      type: ActionType.DISCONNECT,
     }),
   };
 }
