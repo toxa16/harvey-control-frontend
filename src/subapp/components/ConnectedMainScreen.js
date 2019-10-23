@@ -5,6 +5,7 @@ import MainScreen from './MainScreen';
 function mapStateToProps(state) {
   return {
     status: state.controlBackend.status,
+    message: state.controlBackend.message,
   };
 }
 

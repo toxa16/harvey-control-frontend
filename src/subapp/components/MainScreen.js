@@ -7,14 +7,14 @@ import ConnectedScreen from './ConnectedScreen';
 import DisconnectingScreen from './DisconnectingScreen';
 import ErrorScreen from './ErrorScreen';
 
-export default function MainScreen({ status }) {
+export default function MainScreen({ status, message }) {
   function renderByStatus() {
     switch (status) {
       case ConnectionStatus.CONNECTING: {
         return <ConnectingScreen />;
       }
       case ConnectionStatus.CONNECTED: {
-        return <ConnectedScreen />;
+        return <ConnectedScreen message={message} />;
       }
       case ConnectionStatus.DISCONNECTING: {
         return <DisconnectingScreen />;

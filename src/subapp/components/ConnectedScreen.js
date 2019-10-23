@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function ConnectedScreen() {
+export default function ConnectedScreen({ message }) {
   return (
     <div>
-      ConnectedScreen.
+      <div>ConnectedScreen.</div>
+      <br />
+      <div>Message: { message }</div>
     </div>
   );
 }
