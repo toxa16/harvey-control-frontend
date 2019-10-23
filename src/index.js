@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import subAppReducer from './subapp/redux-state/reducer';
 import BaseBackend from './subapp/redux-state/base-backend';
 
-const url = 'DUMMY_URL';  // env
+const url = 'ws://localhost:3001';  // env
 const backend = new BaseBackend(url);
 
 const store = createStore(
