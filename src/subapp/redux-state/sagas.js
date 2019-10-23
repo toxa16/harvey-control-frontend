@@ -1,9 +1,5 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { all, put, takeLatest } from 'redux-saga/effects';
 import ActionType from './action-type.enum';
-
-function* helloSaga() {
-  console.log('hello saga');
-}
 
 function delay(ms) {
   return new Promise(res => setTimeout(res, ms));
@@ -15,12 +11,21 @@ function* connect() {
   yield put({ type: ActionType.HANDLE_CONNECTED });
 }
 function* watchConnect() {
-  yield takeEvery(ActionType.CONNECT, connect);
+  yield takeLatest(ActionType.CONNECT, connect);
+}
+
+function* disconnect() {
+  yield put({ type: ActionType.HANDLE_DISCONNECTING });
+  yield delay(1000);
+  yield put({ type: ActionType.HANDLE_DISCONNECTED });
+}
+function* watchDisconnect() {
+  yield takeLatest(ActionType.DISCONNECT, disconnect);
 }
 
 export default function* rootSaga() {
   yield all([
-    helloSaga(),
     watchConnect(),
+    watchDisconnect(),
   ]);
 }
