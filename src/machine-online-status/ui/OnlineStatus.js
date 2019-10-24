@@ -4,6 +4,7 @@ import MachineStatus from '../logic/machine-status.enum';
 export default function OnlineStatus({ status, onRequestStatus }) {
   function displayStatus() {
     switch (status) {
+      case MachineStatus.PENDING: return 'Pending...';
       case MachineStatus.OFFLINE: return 'OFFLINE';
       case MachineStatus.ONLINE: return 'ONLINE';
       default: return 'UNKNOWN';

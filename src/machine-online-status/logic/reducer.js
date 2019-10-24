@@ -7,6 +7,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case ActionType.MACHINE_PENDING: {
+      return Object.assign({}, state, {
+        status: MachineStatus.PENDING,
+      })
+    }
     case ActionType.MACHINE_OFFLINE: {
       return Object.assign({}, state, {
         status: MachineStatus.OFFLINE,
