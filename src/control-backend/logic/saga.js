@@ -2,6 +2,7 @@ import { call, fork, put, take } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
 
 import ActionType from './action-type.enum';
+import machineOnlineStatusSaga from '../../machine-online-status/logic/sagas';
 
 function websocketChannel(socket) {
   return eventChannel(emit => {
@@ -50,5 +51,6 @@ function* logWebsocket(channel) {
 export default function* controlBackendSaga(socket) {
   yield put({ type: ActionType.CONNECT_PENDING });
   const channel = yield call(websocketChannel, socket);
-  yield call(logWebsocket, channel);
+  yield fork(logWebsocket, channel);
+  yield fork(machineOnlineStatusSaga, socket);
 }
