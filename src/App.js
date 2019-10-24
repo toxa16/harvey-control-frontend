@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './App.css';
-import AuthScreen from './auth/ui/AuthScreen';
 import ConnectedAuthPanel from './_panels/AuthPanel/ConnectedAuthPanel';
+import ConnectedAuthScreen from './auth/ui/ConnectedAuthScreen';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <br />
       <hr />
       <br />
-      <AuthScreen />
+      <ConnectedAuthScreen />
     </div>
   );
 }
