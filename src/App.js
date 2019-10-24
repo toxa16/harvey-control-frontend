@@ -1,16 +1,13 @@
 import React from 'react';
 
 import './App.css';
-import ConnectedPanel from './Panel/ConnectedPanel';
-import ConnectedMainScreen from './subapp/components/ConnectedMainScreen';
-import ConnectedOnlineStatus from './machine-online-status/ui/ConnectedOnlineStatus';
-import ConnectedMachineStatusPanel from './_panels/ConnectedMachineStatusPanel';
 import AuthScreen from './auth/ui/AuthScreen';
+import ConnectedAuthPanel from './_panels/AuthPanel/ConnectedAuthPanel';
 
 function App() {
   return (
     <div className="App">
-      <ConnectedMachineStatusPanel />
+      <ConnectedAuthPanel />
       <br />
       <hr />
       <br />
