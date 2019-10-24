@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header';
+
 import LoggedOut from './LoggedOut';
+import ConnectedHeader from './ConnectedHeader';
 
 export default function AuthScreen() {
   return (
     <div>
-      <Header />
+      <ConnectedHeader />
       <LoggedOut />
     </div>
   );
