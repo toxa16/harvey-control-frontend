@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import subAppReducer from './subapp/redux-state/reducer';
-import rootSaga from './subapp/redux-state/sagas';
+//import rootSaga from './subapp/redux-state/sagas';
 import machineStatusReducer from './machine-online-status/logic/reducer';
 import machineOnlineStatusSaga from './machine-online-status/logic/sagas';
 import authReducer from './auth/logic/reducer';
