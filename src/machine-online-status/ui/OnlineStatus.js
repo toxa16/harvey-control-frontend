@@ -1,7 +1,7 @@
 import React from 'react';
 import MachineStatus from '../logic/machine-status.enum';
 
-export default function OnlineStatus({ status }) {
+export default function OnlineStatus({ status, onRequestStatus }) {
   function displayStatus() {
     switch (status) {
       case MachineStatus.OFFLINE: return 'OFFLINE';
@@ -16,7 +16,9 @@ export default function OnlineStatus({ status }) {
       <div>Status: { displayStatus() }</div>
       <br />
       <div>
-        <button>Request Online Status</button>
+        <button onClick={onRequestStatus}>
+          Request Online Status
+        </button>
       </div>
     </div>
   );

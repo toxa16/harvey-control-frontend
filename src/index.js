@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import subAppReducer from './subapp/redux-state/reducer';
 import rootSaga from './subapp/redux-state/sagas';
 import machineStatusReducer from './machine-online-status/logic/reducer';
+import machineOnlineStatusSaga from './machine-online-status/logic/sagas';
 
 //const url = 'ws://localhost:3001';  // env
 
@@ -21,7 +22,7 @@ const store = createStore(
   }),
   applyMiddleware(sagaMiddleware),
 );
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(machineOnlineStatusSaga);
 
 const root = document.getElementById('root');
 ReactDOM.render(

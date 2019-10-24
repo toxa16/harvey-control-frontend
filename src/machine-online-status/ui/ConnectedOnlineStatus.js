@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import OnlineStatus from './OnlineStatus';
+import ActionType from '../logic/action-type.enum';
 
 function mapStateToProps(state) {
   return {
@@ -9,7 +10,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    onRequestStatus: () => dispatch({ type: ActionType.STATUS_REQUEST }),
+  };
 }
 
 const ConnectedOnlineStatus = connect(
