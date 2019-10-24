@@ -1,4 +1,4 @@
-import { call, delay, put, take } from 'redux-saga/effects';
+import { cancel, delay, fork, put, take } from 'redux-saga/effects';
 
 import ActionType from './action-type.enum';
 import controlBackendSaga from '../../control-backend/logic/saga';
@@ -13,10 +13,11 @@ export default function* authSaga() {
 
     const wsUrl = 'ws://localhost:3001';  // env
     const socket = new WebSocket(wsUrl);
-    yield call(controlBackendSaga, socket);
+    const cbTask = yield fork(controlBackendSaga, socket);
 
     yield take(ActionType.LOGOUT_REQUEST);
     socket.close();
+    yield cancel(cbTask);
 
     yield put({ type: ActionType.LOGOUT_PENDING });
     yield delay(1000);

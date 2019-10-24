@@ -1,4 +1,4 @@
-import { call, fork, put, take } from 'redux-saga/effects';
+import { all, call, put, take } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
 
 import ActionType from './action-type.enum';
@@ -13,8 +13,6 @@ function websocketChannel(socket) {
     };
     const handleClose = () => {
       console.log('websocket closed');
-      const action = { type: ActionType.DISCONNECT_SUCCESS };
-      emit(action);
       emit(END);
     };
     const handleMessage = e => {
@@ -46,6 +44,8 @@ function* logWebsocket(channel) {
 export default function* controlBackendSaga(socket) {
   yield put({ type: ActionType.CONNECT_PENDING });
   const channel = yield call(websocketChannel, socket);
-  yield fork(logWebsocket, channel);
-  yield fork(machineOnlineStatusSaga, socket);
+  yield all([
+    call(logWebsocket, channel),
+    call(machineOnlineStatusSaga, socket),
+  ]);
 }
