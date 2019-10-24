@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import ConnectedAuthPanel from './_panels/AuthPanel/ConnectedAuthPanel';
 import ConnectedAuthScreen from './auth/ui/ConnectedAuthScreen';
-import ControlBackend from './control-backend/ui/ControlBackend';
+import ConnectedControlBackend from './control-backend/ui/ConnectedControlBackend';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <br />
       <hr />
       <br />
-      <ControlBackend status={4} />
+      <ConnectedControlBackend />
     </div>
   );
 }
