@@ -9,7 +9,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    onLoginRequest: () => dispatch({ type: ActionType.LOGIN_REQUEST }),
     onLoginSuccess: () => dispatch({ type: ActionType.LOGIN_SUCCESS }),
+    onLogoutRequest: () => dispatch({ type: ActionType.LOGOUT_REQUEST }),
     onLogoutSuccess: () => dispatch({ type: ActionType.LOGOUT_SUCCESS }),
   };
 }

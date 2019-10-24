@@ -7,15 +7,19 @@ import LoggedIn from './LoggedIn';
 
 export default function AuthScreen({ status }) {
   const renderBody = () => {
-    return status === AuthStatus.LOGGED_IN ?
-      <LoggedIn /> :
-      <LoggedOut />;
+    switch (status) {
+      case AuthStatus.LOGGING_IN: return 'Logging in...';
+      case AuthStatus.LOGGED_IN: return <LoggedIn />;
+      case AuthStatus.LOGGING_OUT: return 'Logging out...';
+      default: return <LoggedOut />;
+    }
   };
 
   return (
     <div>
       <ConnectedHeader />
-      { renderBody() }
+      <br />
+      <div>{ renderBody() }</div>
     </div>
   );
 }
