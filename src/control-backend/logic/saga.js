@@ -19,12 +19,8 @@ function websocketChannel(socket) {
     };
     const handleMessage = e => {
       const message = e.data;
-      console.log(message);
-      /*const action = {
-        type: ActionType.HANDLE_MESSAGE,
-        payload: { message },
-      };
-      emit(action);*/
+      const action = JSON.parse(message);
+      emit(action);
     }
 
     socket.addEventListener('open', handleOpen);
@@ -43,7 +39,6 @@ function websocketChannel(socket) {
 function* logWebsocket(channel) {
   while (true) {
     let action = yield take(channel);
-    console.log(action);
     yield put(action);
   }
 }
