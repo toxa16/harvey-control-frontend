@@ -12,6 +12,7 @@ import rootSaga from './subapp/redux-state/sagas';
 import machineStatusReducer from './machine-online-status/logic/reducer';
 import machineOnlineStatusSaga from './machine-online-status/logic/sagas';
 import authReducer from './auth/logic/reducer';
+import authSaga from './auth/logic/auth-saga';
 
 //const url = 'ws://localhost:3001';  // env
 
@@ -24,7 +25,7 @@ const store = createStore(
   }),
   applyMiddleware(sagaMiddleware),
 );
-sagaMiddleware.run(machineOnlineStatusSaga);
+sagaMiddleware.run(authSaga);
 
 const root = document.getElementById('root');
 ReactDOM.render(

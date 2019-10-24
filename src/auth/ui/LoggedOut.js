@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function LoggedOut() {
+export default function LoggedOut({ onLoginRequest }) {
   return (
     <div>
       <h2>Logged Out</h2>
       <div>
-        <button>Log In</button>
+        <button onClick={onLoginRequest}>Log In</button>
       </div>
     </div>
   );

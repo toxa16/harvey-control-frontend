@@ -1,10 +1,10 @@
 import React from 'react';
 import AuthStatus from '../logic/auth-status.enum';
 
-export default function Header({ status }) {
+export default function Header({ status, onLogoutRequest }) {
   const renderLogoutButton = () => {
     return (status === AuthStatus.LOGGED_IN) &&
-      <button>Log Out</button>;
+      <button onClick={onLogoutRequest}>Log Out</button>;
   }
 
   return (

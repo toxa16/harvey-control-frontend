@@ -1,23 +1,21 @@
 import { connect } from 'react-redux';
 
-import Header from './Header';
+import LoggedOut from './LoggedOut';
 import ActionType from '../logic/action-type.enum';
 
 function mapStateToProps(state) {
-  return {
-    status: state.auth.status,
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLogoutRequest: () => dispatch({ type: ActionType.LOGOUT_REQUEST }),
+    onLoginRequest: () => dispatch({ type: ActionType.LOGIN_REQUEST }),
   };
 }
 
-const ConnectedHeader = connect(
+const ConnectedLoggedOut = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Header);
+)(LoggedOut);
 
-export default ConnectedHeader;
+export default ConnectedLoggedOut;
