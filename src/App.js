@@ -5,6 +5,7 @@ import ConnectedPanel from './Panel/ConnectedPanel';
 import ConnectedMainScreen from './subapp/components/ConnectedMainScreen';
 import ConnectedOnlineStatus from './machine-online-status/ui/ConnectedOnlineStatus';
 import ConnectedMachineStatusPanel from './_panels/ConnectedMachineStatusPanel';
+import AuthScreen from './auth/ui/AuthScreen';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <br />
       <hr />
       <br />
-      <ConnectedOnlineStatus />
+      <AuthScreen />
     </div>
   );
 }
