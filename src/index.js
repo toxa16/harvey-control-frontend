@@ -28,7 +28,7 @@ const store = createStore(
   }),
   applyMiddleware(sagaMiddleware),
 );
-sagaMiddleware.run(controlBackendSaga);
+sagaMiddleware.run(authSaga);
 
 const root = document.getElementById('root');
 ReactDOM.render(

@@ -12,7 +12,7 @@ function App() {
       <br />
       <hr />
       <br />
-      <ConnectedControlBackend />
+      <ConnectedAuthScreen />
     </div>
   );
 }
