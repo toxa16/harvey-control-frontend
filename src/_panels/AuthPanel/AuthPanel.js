@@ -1,17 +1,17 @@
 import React from 'react';
 
 export default function AuthPanel({
-  onLoginRequest, onLoginSuccess, onLogoutRequest, onLogoutSuccess,
+  onLoginPending, onLoginSuccess, onLogoutPending, onLogoutSuccess,
 }) {
   return (
     <div>
       <h3>Auth Panel</h3>
       <div>
-        <button onClick={onLoginRequest}>LoginRequest</button>
+        <button onClick={onLoginPending}>LoginPending</button>
         {' '}
         <button onClick={onLoginSuccess}>LoginSuccess</button>
         {' '}
-        <button onClick={onLogoutRequest}>LogoutRequest</button>
+        <button onClick={onLogoutPending}>LogoutPending</button>
         {' '}
         <button onClick={onLogoutSuccess}>LogoutSuccess</button>
       </div>

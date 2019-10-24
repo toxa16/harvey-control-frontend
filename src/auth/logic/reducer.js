@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ActionType.LOGIN_REQUEST: {
+    case ActionType.LOGIN_PENDING: {
       return Object.assign({}, state, {
         status: AuthStatus.LOGGING_IN,
       });
@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         status: AuthStatus.LOGGED_IN,
       });
     }
-    case ActionType.LOGOUT_REQUEST: {
+    case ActionType.LOGOUT_PENDING: {
       return Object.assign({}, state, {
         status: AuthStatus.LOGGING_OUT,
       });
