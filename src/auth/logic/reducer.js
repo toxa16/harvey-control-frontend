@@ -7,9 +7,19 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case ActionType.LOGIN_REQUEST: {
+      return Object.assign({}, state, {
+        status: AuthStatus.LOGGING_IN,
+      });
+    }
     case ActionType.LOGIN_SUCCESS: {
       return Object.assign({}, state, {
         status: AuthStatus.LOGGED_IN,
+      });
+    }
+    case ActionType.LOGOUT_REQUEST: {
+      return Object.assign({}, state, {
+        status: AuthStatus.LOGGING_OUT,
       });
     }
     case ActionType.LOGOUT_SUCCESS: {
